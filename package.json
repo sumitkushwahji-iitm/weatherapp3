@@ -1,0 +1,24 @@
+{
+  "name": "expressweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "author": "sumit kushwah",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "hbs": "^4.1.2",
+    "hibernate": "^1.0.0",
+    "html": "^1.0.0",
+    "intellisense": "0.0.1",
+    "nodemon": "^2.0.21",
+    "serialport": "^10.5.0",
+    "ws": "^8.13.0",
+    "wss": "^0.0.2"
+  }
+}

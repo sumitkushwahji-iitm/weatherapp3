@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Disciplined Oscillator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  
+
+
+</head>
+
+
+<body>
+
+  <nav class="navbar navbar-expand-lg py-2" style="background-color: rgb(138, 101, 101)">
+    <div class="container-fluid">
+      <img src="https://www.nplindia.org/wp-content/uploads/2023/01/CSIR-removebg-preview-150x150.png" alt="Left Image"
+        width="80" height="80" class="me-2">
+      <a class="navbar-brand fw-bold fs-1 mx-auto">
+        Client DO
+      </a>
+      <img src="	https://www.nplindia.org/wp-content/uploads/2021/12/npl-150x150.png" alt="Right Image" width="80"
+        height="80" class="ms-2">
+
+    </div>
+  </nav>
+
+
+  <div class="container-fluid">
+    <div class="row pt-4">
+      <div class="btn-group-vertical col-2 mx-auto">
+        <button type="button" class="btn btn-lg btn-outline-primary mb-2 py-3 clicks fs-2 border-3">Dashboard <i
+            class="fa-solid fa-gauge"></i></button>
+        <button type="button" class="btn btn-lg btn-outline-success mb-2 py-3 clicks fs-2 border-3">Receiver <i
+            class="fa-solid fa-satellite-dish"></i></button>
+        <button type="button" class="btn btn-lg btn-outline-info mb-2 py-3 clicks fs-2 border-3">Rubidium <i
+            class="fa-regular fa-clock"></i></button>
+        <button type="button" class="btn btn-lg btn-outline-warning mb-2 py-3 clicks fs-2 border-3">TIC <i
+            class="fa-solid fa-wave-square"></i></button>
+        <button type="button" class="btn btn-lg btn-outline-light mb-2 py-3 clicks fs-2 border-3">NTP/PTP <i
+            class="fa-solid fa-network-wired"></i></button>
+        <button type="button" class="btn btn-lg btn-outline-danger py-3 clicks fs-3 border-3">Data Processing <i
+            class="fa-solid fa-server"></i></button>
+      </div>
+
+      <div class="p-3 border border-dark rounded-4 col-9 mx-auto"
+        style="box-shadow: 0 5px 5px 5px rgba(255, 255, 255, 0.2);">
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+          <label class="btn btn-outline-light" for="btnradio1">Radio 1</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+          <label class="btn btn-outline-light" for="btnradio2">Radio 2</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+          <label class="btn btn-outline-light" for="btnradio3">Radio 3</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+          <label class="btn btn-outline-light" for="btnradio4">Radio 4</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
+          <label class="btn btn-outline-light" for="btnradio5">Radio 5</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
+          <label class="btn btn-outline-light" for="btnradio6">Radio 6</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off">
+          <label class="btn btn-outline-light" for="btnradio7">Radio 7</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio8" autocomplete="off">
+          <label class="btn btn-outline-light" for="btnradio8">Radio 8</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio9" autocomplete="off">
+          <label class="btn btn-outline-light" for="btnradio9">Radio 9</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio10" autocomplete="off">
+          <label class="btn btn-outline-light" for="btnradio10">Radio 10</label>
+        </div>
+
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+  <script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    var chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [],
+        datasets: [{
+          label: 'Real-time data',
+          data: [],
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+
+
+    setInterval(function () {
+      var newData = Math.floor(Math.random() * 100);
+      var labels = chart.data.labels;
+      var data = chart.data.datasets[0].data;
+
+      if (labels.length === 30) {
+        labels.shift();
+        data.shift();
+      }
+      labels.push('Satellite ' + newData);
+      data.push(newData);
+
+      chart.update();
+    }, 1000);
+
+
+
+
+
+// Find all USB devices with a serial interface
+navigator.usb.getDevices()
+  .then(devices => {
+    const serialDevices = devices.filter(device =>
+      device.configuration.interfaces.some(interface =>
+        interface.alternates.some(alternate =>
+          alternate.interfaceClass === 0x02 && // Communication Interface Class
+          alternate.interfaceSubclass === 0x02 // Abstract Control Model
+        )
+      )
+    )
+    return Promise.all(serialDevices.map(device => device.open()))
+  })
+  .then(ports => {
+    // Set up event listeners for all open ports
+    ports.forEach(port => {
+      port.addEventListener('data', event => {
+        console.log('Received data from port', port.device.serialNumber, ':', new TextDecoder().decode(event.data))
+      })
+      port.addEventListener('error', error => {
+        console.error('Serial port error on port', port.device.serialNumber, ':', error)
+      })
+
+      // Read data from the port
+      port.read()
+        .then(data => console.log('Read data from port', port.device.serialNumber, ':', new TextDecoder().decode(data)))
+        .catch(error => console.error('Read error on port', port.device.serialNumber, ':', error))
+    })
+  })
+  .catch(error => console.error('USB error:', error))
+
+
+  </script>
+ 
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+  </script>
+ 
+</body>
+
+</html>
